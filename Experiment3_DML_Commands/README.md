@@ -1,169 +1,197 @@
-# Experiment 3: DML Commands
-
-## AIM
+Experiment 3: DML Commands
+AIM
 To study and implement DML (Data Manipulation Language) commands.
 
-## THEORY
+THEORY
+1. INSERT INTO
+Used to add records into a relation. These are three type of INSERT INTO queries which are as A)Inserting a single record Syntax (Single Row):
 
-### 1. INSERT INTO
-Used to add records into a relation.
-These are three type of INSERT INTO queries which are as
-A)Inserting a single record
-**Syntax (Single Row):**
-```sql
 INSERT INTO table_name (field_1, field_2, ...) VALUES (value_1, value_2, ...);
-```
-**Syntax (Multiple Rows):**
-```sql
+Syntax (Multiple Rows):
+
 INSERT INTO table_name (field_1, field_2, ...) VALUES
 (value_1, value_2, ...),
 (value_3, value_4, ...);
-```
-**Syntax (Insert from another table):**
-```sql
+Syntax (Insert from another table):
+
 INSERT INTO table_name SELECT * FROM other_table WHERE condition;
-```
-### 2. UPDATE
-Used to modify records in a relation.
-Syntax:
-```sql
+2. UPDATE
+Used to modify records in a relation. Syntax:
+
 UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
-```
-### 3. DELETE
-Used to delete records from a relation.
-**Syntax (All rows):**
-```sql
+3. DELETE
+Used to delete records from a relation. Syntax (All rows):
+
 DELETE FROM table_name;
-```
-**Syntax (Specific condition):**
-```sql
+Syntax (Specific condition):
+
 DELETE FROM table_name WHERE condition;
-```
-### 4. SELECT
-Used to retrieve records from a table.
-**Syntax:**
-```sql
+4. SELECT
+Used to retrieve records from a table. Syntax:
+
 SELECT column1, column2 FROM table_name WHERE condition;
-```
-**Question 1**
---
--- Paste Question 1 here
+Question 1
+Write a SQL query to reduce the reorder level by 30% where cost price is more than 50 and quantity in stock is less than 100 in the products table.
 
-```sql
--- Paste your SQL code below for Question 1
-```
+Products Table
 
-**Output:**
+name type
 
-![Output1](output.png)
+product_id INT PRIMARY KEY
+product_name VARCHAR(10) category VARCHAR(50) cost_price DECIMAL(10) sell_price DECIMAL(10) reorder_lvl INT
+quantity INT
+supplier_id INT
 
-**Question 2**
----
--- Paste Question 2 here
+UPDATE products
+SET reorder_lvl = reorder_lvl * 0.7
+WHERE cost_price > 50
+  AND quantity < 100;
+Output:
 
-```sql
--- Paste your SQL code below for Question 2
-```
+<img width="1227" height="525" alt="502395019-b581881d-cc43-4b9e-87d0-c0e54dba1efa" src="https://github.com/user-attachments/assets/41eb2dcd-3ba4-44f6-8fbf-ea108f9baff2" />
 
-**Output:**
+Question 2
+Update the total selling price to quantity sold multiplied by updated selling price per unit where product id is 10 in the sales table.
 
-![Output2](output.png)
+SALES TABLE name type
 
-**Question 3**
----
--- Paste Question 3 here
+sale_id INT sale_date DATE product_id INT quantity INT sell_price DECIMAL(10,2) total_sell_price DECIMAL(10,2)
 
-```sql
--- Paste your SQL code below for Question 3
-```
+UPDATE sales
+SET total_sell_price = quantity * sell_price
+WHERE product_id = 10;
+Output:
 
-**Output:**
+<img width="1227" height="577" alt="502395426-45ba683b-c21b-45ff-934d-aa721d06c51e" src="https://github.com/user-attachments/assets/7c5849e2-f2d3-4d96-832b-7c7bd42727fe" />
 
-![Output3](output.png)
 
-**Question 4**
----
--- Paste Question 4 here
+Question 3
+Write a SQL statement to change the first_name column of employees table with 'John' for those employees whose department_id is 80 and gets a commission_pct below 0.35.
 
-```sql
--- Paste your SQL code below for Question 4
-```
+Employees table
 
-**Output:**
+employee_id first_name last_name email phone_number hire_date job_id salary commission_pct manager_id department_id
 
-![Output4](output.png)
+UPDATE employees
+SET first_name = 'John'
+WHERE department_id = 80
+  AND commission_pct < 0.35;
+Output:
 
-**Question 5**
----
--- Paste Question 5 here
+<img width="1227" height="627" alt="502395844-dc71182b-6da9-4e03-bd51-518d44592b0b" src="https://github.com/user-attachments/assets/b407c236-bd2b-4949-b910-f09d731786a4" />
 
-```sql
--- Paste your SQL code below for Question 5
-```
+Question 4
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is greater than or equal to 2.
 
-**Output:**
+DELETE FROM customer
+WHERE GRADE >= 2;
+Output:
 
-![Output5](output.png)
+<img width="1226" height="620" alt="502396953-42f47e48-00e0-4726-980a-b89ae8391094" src="https://github.com/user-attachments/assets/e082368f-a559-4ee1-bcfd-bed943aed8c2" />
 
-**Question 6**
----
--- Paste Question 6 here
+Question 5
+Write a SQL query to Delete a Specific Surgery whose ID is 3
 
-```sql
--- Paste your SQL code below for Question 6
-```
+Sample table: Surgeries
 
-**Output:**
+attributes: surgery_id, patient_id, surgeon_id, surgery_date For example:
 
-![Output6](output.png)
+Test Result SELECT * FROM surgeries; surgery_id patient_id surgeon_id surgery_date
 
-**Question 7**
----
--- Paste Question 7 here
+1 1 1 2024-01-15 2 2 2 2024-02-28 3 3 3 2024-03-25 surgery_id patient_id surgeon_id surgery_date
 
-```sql
--- Paste your SQL code below for Question 7
-```
+1 1 1 2024-01-15 2 2 2 2024-02-28
 
-**Output:**
+DELETE FROM surgeries
+WHERE surgery_id = 3;
+Output:
 
-![Output7](output.png)
+<img width="1223" height="461" alt="502397600-6b5ce9a1-d95a-4633-93a3-d1651daf7697" src="https://github.com/user-attachments/assets/e2a5e76c-e304-45aa-8248-24f720ce8507" />
 
-**Question 8**
----
--- Paste Question 8 here
 
-```sql
--- Paste your SQL code below for Question 8
-```
+Question 6
+Write a SQL query to delete a specific doctor from Doctors table whose ID is 1.
 
-**Output:**
+Sample table: Doctors
 
-![Output8](output.png)
+attributes : doctor_id, first_name, last_name, specialization
 
-**Question 9**
----
--- Paste Question 9 here
+DELETE FROM doctors
+WHERE doctor_id = 1;
+Output:
 
-```sql
--- Paste your SQL code below for Question 9
-```
+<img width="1225" height="335" alt="502397936-ff5d55b3-fee3-4f70-9808-76542aaaff69" src="https://github.com/user-attachments/assets/88512d59-c649-485b-8419-404d0006cc3a" />
 
-**Output:**
+Question 7
+Write a SQL statement to retrieve city(column name) of all customers from customers table without any repeats.
 
-![Output9](output.png)
+SELECT DISTINCT city
+FROM customers;
+Output
 
-**Question 10**
----
--- Paste Question 10 here
+<img width="1223" height="606" alt="502398475-e3665595-4737-4ef3-b9ed-415743d310fe" src="https://github.com/user-attachments/assets/7eeed3ff-be48-4216-aad6-a4b3b3ba1b4a" />
 
-```sql
--- Paste your SQL code below for Question 10
-```
 
-**Output:**
+Question 8
+Write a SQL query to assign a priority of 'Low', 'Medium', or 'High' to value2 based on whether it is less than 20, between 20 and 50, or greater than 50, respectively in the Calculations table.
 
-![Output10](output.png)
+cid name type notnull dflt_value pk
 
-## RESULT
+0 id INTEGER 0 1 1 value1 REAL 0 0 2 value2 REAL 0 0 3 base INTEGER 0 0 4 exponent INTEGER 0 0 5 number REAL 0 0 6 decimal REAL 0 0
+
+SELECT 
+    id,
+    value2,
+    CASE
+        WHEN value2 < 20 THEN 'Low'
+        WHEN value2 >= 20 AND value2 <= 50 THEN 'Medium'
+        WHEN value2 > 50 THEN 'High'
+    END AS priority
+FROM Calculations;
+Output:
+
+![Uploading 502398806-73cb77ff-1659-4af1-aad2-22ff0358cea1.png…]()
+
+Question 9
+Write a SQL query to find customers who are either from the city 'New York' or who have a grade greater than 200. Return customer_id, cust_name, city, grade, and salesman_id.
+
+SELECT customer_id, cust_name, city, grade, salesman_id
+FROM customer
+WHERE city = 'New York'
+   OR grade > 200;
+Output:
+
+<img width="1223" height="520" alt="502399200-4f0c9a67-cafe-4291-99cc-1fbef5100efc" src="https://github.com/user-attachments/assets/da4a2be0-b947-46a6-a71e-e3de3b7c0d46" />
+
+
+Question 10
+Write a SQL query to calculate the discounted price for products whose original price is between $50 and $150. Return product_id, original_price, discount_percentage, and discounted_price.
+
+Sample table: Products
+
+product_id | original_price | discount_percentage
+
+------------+----------------+---------------------
+
+101 | 50.00 | 0.10
+
+102 | 125.00 | 0.15
+
+103 | 200.00 | 0.20
+
+SELECT 
+    product_id,
+    original_price,
+    discount_percentage,
+    original_price * (1 - discount_percentage) AS discounted_price
+FROM Products
+WHERE original_price BETWEEN 50 AND 150;
+Output:
+
+<img width="1225" height="365" alt="502399493-8ec1acaf-7b44-404c-b8af-bde211ffc8b0" src="https://github.com/user-attachments/assets/b18463fa-94b8-4792-8973-635edcf31de2" />
+
+<img width="1913" height="1046" alt="502399740-a1c722ab-3201-4e67-bdf3-b22d555f974e" src="https://github.com/user-attachments/assets/e553646a-5934-4739-809f-60d518fdf925" />
+
+
+RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
