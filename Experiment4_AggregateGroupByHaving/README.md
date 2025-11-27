@@ -1,161 +1,131 @@
-# Experiment 4: Aggregate Functions, Group By and Having Clause
+<img width="656" height="379" alt="451345760-add35670-4fe4-46e8-8456-f140e3d683e3" src="https://github.com/user-attachments/assets/49857e77-171c-46d2-a8ee-87bf3f23e6e3" /><img width="399" height="316" alt="451345354-faf627ff-1d61-437a-be90-6a2c300b885c" src="https://github.com/user-attachments/assets/e027aa88-2cf4-4c53-abf7-b4ac4fdf6d32" />Experiment 4: Aggregate Functions, Group By and Having Clause
 
-## AIM
+AIM
 To study and implement aggregate functions, GROUP BY, and HAVING clause with suitable examples.
 
-## THEORY
-
-### Aggregate Functions
+THEORY
+Aggregate Functions
 These perform calculations on a set of values and return a single value.
 
-- **MIN()** – Smallest value  
-- **MAX()** – Largest value  
-- **COUNT()** – Number of rows  
-- **SUM()** – Total of values  
-- **AVG()** – Average of values
+MIN() – Smallest value
+MAX() – Largest value
+COUNT() – Number of rows
+SUM() – Total of values
+AVG() – Average of values
+Syntax:
 
-**Syntax:**
-```sql
 SELECT AGG_FUNC(column_name) FROM table_name WHERE condition;
-```
-### GROUP BY
-Groups records with the same values in specified columns.
-**Syntax:**
-```sql
+GROUP BY
+Groups records with the same values in specified columns. Syntax:
+
 SELECT column_name, AGG_FUNC(column_name)
 FROM table_name
 GROUP BY column_name;
-```
-### HAVING
-Filters the grouped records based on aggregate conditions.
-**Syntax:**
-```sql
+HAVING
+Filters the grouped records based on aggregate conditions. Syntax:
+
 SELECT column_name, AGG_FUNC(column_name)
 FROM table_name
 GROUP BY column_name
 HAVING condition;
-```
+Question 1
+-- How many appointments are scheduled for each patient?
 
-**Question 1**
---
--- Paste Question 1 here
-
-```sql
--- Paste your SQL code below for Question 1
-```
-
-**Output:**
-
-![Output1](output.png)
-
-**Question 2**
----
--- Paste Question 2 here
-
-```sql
--- Paste your SQL code below for Question 2
-```
-
-**Output:**
-
-![Output2](output.png)
-
-**Question 3**
----
--- Paste Question 3 here
-
-```sql
--- Paste your SQL code below for Question 3
-```
-
-**Output:**
-
-![Output3](output.png)
-
-**Question 4**
----
--- Paste Question 4 here
-
-```sql
--- Paste your SQL code below for Question 4
-```
-
-**Output:**
-
-![Output4](output.png)
-
-**Question 5**
----
--- Paste Question 5 here
-
-```sql
--- Paste your SQL code below for Question 5
-```
-
-**Output:**
-
-![Output5](output.png)
-
-**Question 6**
----
--- Paste Question 6 here
-
-```sql
--- Paste your SQL code below for Question 6
-```
-
-**Output:**
-
-![Output6](output.png)
-
-**Question 7**
----
--- Paste Question 7 here
-
-```sql
--- Paste your SQL code below for Question 7
-```
-
-**Output:**
-
-![Output7](output.png)
-
-**Question 8**
----
--- Paste Question 8 here
-
-```sql
--- Paste your SQL code below for Question 8
-```
-
-**Output:**
-
-![Output8](output.png)
-
-**Question 9**
----
--- Paste Question 9 here
-
-```sql
--- Paste your SQL code below for Question 9
-```
-
-**Output:**
-
-![Output9](output.png)
-
-**Question 10**
----
--- Paste Question 10 here
-
-```sql
--- Paste your SQL code below for Question 10
-```
-
-**Output:**
-
-![Output10](output.png)
+-- SELECT PatientID , count(AppointmentID) as TotalAppointments
+FROM Appointments 
+group by PatientID
+ORDER BY PatientID
+Output:
 
 
-## RESULT
-Thus, the SQL queries to implement aggregate functions, GROUP BY, and HAVING clause have been executed successfully.
+Question 2
+-- What is the average duration of insurance coverage for patients covered by each insurance company?
+
+-- SELECT InsuranceCompany, AVG(enddate - startdate) AS AvgCoverageDurationDays
+FROM Insurance
+GROUP BY InsuranceCompany;
+Output:
+
+
+Question 3
+-- How many prescriptions were written in each frequency category (e.g., once daily, twice daily)?
+
+-- select Frequency, count(PatientID) as TotalPrescriptions
+FROM Prescriptions
+group by Frequency;
+Output:
+
+<img width="786" height="530" alt="451344939-c0bff40e-f88d-42bc-a8d2-a0790c66f765" src="https://github.com/user-attachments/assets/ce886274-80aa-4a2b-9b4c-7cdf013439c8" />
+
+Question 4
+-- Write a SQL query to find the average salary of all employees?
+
+-- SELECT AVG(income) AS Average_Salary 
+FROM employee;
+Output:
+
+<img width="500" height="311" alt="451345091-338edc65-45d5-4808-9499-9be884d9878a" src="https://github.com/user-attachments/assets/1f52dca0-d5ad-4625-b75e-14cdaaf12c90" />
+
+Question 5
+-- Write a SQL query that counts the number of unique salespeople. Return number of salespeople.
+
+-- SELECT count(distinct salesman_id) AS COUNT
+FROM orders;
+Output:
+
+<img width="399" height="316" alt="451345354-faf627ff-1d61-437a-be90-6a2c300b885c" src="https://github.com/user-attachments/assets/10d1988b-44ce-4f97-b29b-b8ab1d7f20ad" />
+
+Question 6
+-- Write a SQL query to return the total number of rows in the 'customer' table where the city is not Noida.
+
+-- SELECT COUNT(id) AS COUNT FROM customer 
+WHERE city != 'Noida';
+Output:
+
+<img width="394" height="311" alt="451345456-9cec0969-1b57-4d63-8520-ce9d54a168bc" src="https://github.com/user-attachments/assets/a97f29eb-a660-423f-9c7e-3ce69565e447" />
+
+Question 7
+-- Write a SQL query to find What is the age difference between the youngest and oldest employee in the company.
+
+-- SELECT MAX(age) - MIN(age) AS age_difference 
+FROM employee;
+Output:
+
+<img width="458" height="312" alt="451345619-2db69714-9ff2-467e-970f-c1113a4801dd" src="https://github.com/user-attachments/assets/da424a0a-4927-4ed6-8725-5e24189d754f" />
+
+
+Question 8
+--Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the minimum work hours for each date, and excludes dates where the minimum work hour is not less than 10.
+
+-- SELECT jdate, MIN(workhour) 
+FROM employee1 
+GROUP BY jdate 
+HAVING MIN(workhour) < 10;
+Output:
+
+<img width="656" height="379" alt="451345760-add35670-4fe4-46e8-8456-f140e3d683e3" src="https://github.com/user-attachments/assets/ac2bcccf-8865-4d9a-84d7-3ea7c9876576" />
+
+Question 9
+-- Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the total work hours for each date, and excludes dates where the total work hour sum is not greater than 40.
+
+-- SELECT jdate, SUM(workhour)
+FROM employee1 
+GROUP BY jdate
+HAVING SUM(workhour) >= 40;
+Output:
+
+<img width="636" height="373" alt="451345904-1c6e000f-0cb5-41f5-9358-3ca1f6c4d36a" src="https://github.com/user-attachments/assets/ee273b82-5d07-4530-bd4d-38f890d342c7" />
+
+Question 10
+-- Write the SQL query that achieves the grouping of data by age, calculates the minimum income for each age group, and includes only those age groups where the minimum income is less than 400,000.
+
+-- SELECT age, MIN(income) 
+FROM employee 
+GROUP BY age
+HAVING MIN(income) < 400000;
+Output:
+
+<img width="565" height="333" alt="451346026-803d818b-9d1f-4472-93f6-4eaf2daa37fc" src="https://github.com/user-attachments/assets/34e6fc65-5c13-4d95-956e-73f9a5737dbd" />
+
+RESULT
+Thus, the SQL queries to implement aggregate functions, GROUP BY, and HAVING clause have been executed successfully
